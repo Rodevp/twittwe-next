@@ -1,4 +1,5 @@
 import Sidebar from "@/components/Sidebar"
+import FollowBar from "./FollowBar"
 
 function Layout({ children }) {
     return (
@@ -22,6 +23,7 @@ function Layout({ children }) {
                     >
                         {children}
                     </div>
+                    <FollowBar />
                 </div>
             </section>
         </main>

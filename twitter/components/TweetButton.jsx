@@ -14,7 +14,7 @@ function TweetButton() {
                 className="
                     mt-6 lg:hidden rouded-full h-14 w-14 p-4
                     flex justify-center items-center bg-sky-500 
-                    hover:bg-opacity-80 transition cursor-pointer
+                    hover:bg-opacity-80 transition cursor-pointer rounded-full
                 "
             >
                 <FaFeather size={24} color="white" />
