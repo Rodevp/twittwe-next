@@ -1,14 +1,18 @@
 import { FaFeather } from "react-icons/fa"
-import { useRouter } from "next/router"
+import { useModalLogin } from "@/hooks/useModalLogin"
 
 
 function TweetButton() {
 
-    const router = useRouter()
+    const loginModal = useModalLogin()
+
+    const onClick = () => {
+        loginModal.onOpen()
+    }
 
     return (
         <div
-            onClick={() => router.push('/')}
+            onClick={onClick}
         >
             <div
                 className="
