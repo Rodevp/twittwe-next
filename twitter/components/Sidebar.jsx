@@ -4,6 +4,7 @@ import { BiLogOut } from "react-icons/bi"
 
 import IconSidebar from "@/components/IconSidebar"
 import SidebarIconItem from "./SidebarIconItem"
+import TweetButton from "./TweetButton"
 
 function Sidebar() {
 
@@ -42,6 +43,7 @@ function Sidebar() {
                         })
                     }
                     <SidebarIconItem Icon={BiLogOut} label="logout" />
+                    <TweetButton />
                 </div>
             </div>
         </section>
