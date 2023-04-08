@@ -2,7 +2,10 @@ import Input from "@/components/Input"
 import Modal from "@/components/Modal"
 import { useModalLogin } from "@/hooks/useModalLogin"
 import { useModalRegister } from "@/hooks/useModalRegister"
+import axios from "axios"
+import { signIn } from "next-auth/react"
 import { useState } from "react"
+import { toast } from "react-hot-toast"
 
 
 function ModalRegister() {
@@ -13,16 +16,34 @@ function ModalRegister() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
-    const [userName, setUserName] = useState('')
+    const [username, setUserName] = useState('')
     const [isLoading, setIsLoading] = useState(false)
 
     const onSubmit = async () => {
-        //setIsLoading(true)
         try {
+            
+            setIsLoading(true)
+            
+            await axios.post('/api/register', {
+                email,
+                password,
+                username,
+                name,
+              })
+            
+            toast.success("Register correct")
+
+            signIn("credentials", {
+                email,
+                password
+            })
 
             registerModal.onClose()
+            loginModal.onClose()
+
         } catch (error) {
             console.log(error.message)
+            toast.error("Error on register")
         } finally {
             setIsLoading(false)
         }
@@ -54,7 +75,7 @@ function ModalRegister() {
             <Input
                 placeholder="UserName"
                 onChange={(e) => setUserName(e.target.value)}
-                value={userName}
+                value={username}
                 disabled={isLoading}
             />
             <Input

@@ -5,8 +5,18 @@ import { BiLogOut } from "react-icons/bi"
 import IconSidebar from "@/components/IconSidebar"
 import SidebarIconItem from "./SidebarIconItem"
 import TweetButton from "./TweetButton"
+import useCurrentUser from "@/hooks/useCurrentUser"
+
+import { signOut } from "next-auth/react"
+import { useRouter } from "next/router"
+import { useModalLogin } from "@/hooks/useModalLogin"
 
 function Sidebar() {
+
+    const { data } = useCurrentUser()
+    const modaLogin = useModalLogin()
+
+    const router = useRouter()
 
     const items = [
         {
@@ -39,10 +49,21 @@ function Sidebar() {
                     <IconSidebar />
                     {
                         items.map((item) => {
-                            return <SidebarIconItem key={item.path} {...item} />
+                            return <SidebarIconItem  onClick={() => {
+                                
+                                if ( !data?.user && item.path !== "/" ) {
+                                    modaLogin.onOpen()
+                                } else {
+                                    router.push(item.path)
+                                }
+                            } }  key={item.path} {...item} />
                         })
                     }
-                    <SidebarIconItem Icon={BiLogOut} label="logout" />
+                    {
+                        data?.user && (
+                            <SidebarIconItem onClick={ () => signOut() } Icon={BiLogOut} label="logout" />
+                        )
+                    }
                     <TweetButton />
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-import fetcher from '@/libs/fetcher';
+import fetcher from '@/hooks/useFetcher'
 
 const useCurrentUser = () => {
 

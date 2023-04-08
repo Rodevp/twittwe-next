@@ -1,11 +1,11 @@
 import bcrypt from "bcrypt"
-import NextAuth from "next-auth/next"
+import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 
 import primaClient from "@/libs/prisma"
 
-export default NextAuth({
+export const nextAuthOptions =  {
     adapter: PrismaAdapter(primaClient),
     providers: [
         Credentials({
@@ -14,7 +14,7 @@ export default NextAuth({
                 email: {  label: "email", type: "text" },
                 password: { label: "password", type: "password"}
             },
-            async login(credentials) {
+            async authorize(credentials) {
 
                 if ( !credentials?.email || !credentials?.password ) {
                     throw new Error('Email or Password is invalid')       
@@ -51,4 +51,6 @@ export default NextAuth({
         secret: process.env.NEXTAUTH_SSHH
     },
     secret: process.env.NEXTAUTH_SSHH_X2
-})
+}
+
+export default NextAuth(nextAuthOptions)

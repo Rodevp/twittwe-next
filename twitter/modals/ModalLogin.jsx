@@ -3,6 +3,8 @@ import Modal from "@/components/Modal";
 import { useModalLogin } from "@/hooks/useModalLogin";
 import { useModalRegister } from "@/hooks/useModalRegister";
 import { useState } from "react"
+import { signIn } from "next-auth/react"
+
 
 
 function ModalLogin() {
@@ -16,8 +18,13 @@ function ModalLogin() {
     const [isLoading, setIsLoading] = useState(false)
 
     const onSubmit = async () => {
-        //setIsLoading(true)
+        setIsLoading(true)
         try {
+            
+            signIn("credentials", {
+                email,
+                password,
+            })
 
             loginModal.onClose()
         } catch (error) {

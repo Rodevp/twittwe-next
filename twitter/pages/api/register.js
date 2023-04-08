@@ -22,7 +22,9 @@ export default async function handler(req, res) {
                 hashedPassword
             }
         })
+
         return res.status(201).json({ message: 'created', user })
+        
     } catch (error) {
         console.log(error)
     }

@@ -5,6 +5,7 @@ function SidebarIconItem({ path, label, Icon, onClick,  }) {
         className="
             flex flex-row items-center
         "
+        onClick={onClick}
     >
         <div
             className="
