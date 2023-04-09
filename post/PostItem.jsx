@@ -1,22 +1,22 @@
-import { useRouter } from 'next/router';
-import { useCallback, useMemo } from 'react';
-import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from 'react-icons/ai';
-import { formatDistanceToNowStrict } from 'date-fns';
+import { useRouter } from 'next/router'
+import { useCallback, useMemo } from 'react'
+import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from 'react-icons/ai'
+import { formatDistanceToNowStrict } from 'date-fns'
 
-import useLoginModal from '@/hooks/useLoginModal';
-import useCurrentUser from '@/hooks/useCurrentUser';
-import useLike from '@/hooks/useLike';
+import useLoginModal from '@/hooks/useLoginModal'
+import useCurrentUser from '@/hooks/useCurrentUser'
+import useLike from '@/hooks/useLike'
 
-import Avatar from '@/components/Avatar';
+import Avatar from '@/components/Avatar'
 
 
 function PostItem ({ data = {}, userId }) {
 
-  const router = useRouter();
-  const loginModal = useLoginModal();
+  const router = useRouter()
+  const loginModal = useLoginModal()
 
-  const { data: currentUser } = useCurrentUser();
-  const { hasLiked, toggleLike } = useLike({ postId: data.id, userId});
+  const { data: currentUser } = useCurrentUser()
+  const { hasLiked, toggleLike } = useLike({ postId: data.id, userId})
 
   const goToUser = useCallback((ev) => {
     ev.stopPropagation()
@@ -31,11 +31,11 @@ function PostItem ({ data = {}, userId }) {
     ev.stopPropagation()
 
     if (!currentUser) {
-      return loginModal.onOpen();
+      return loginModal.onOpen()
     }
 
-    toggleLike();
-  }, [loginModal, currentUser, toggleLike]);
+    toggleLike()
+  }, [loginModal, currentUser, toggleLike])
 
   const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart
 
@@ -132,4 +132,4 @@ function PostItem ({ data = {}, userId }) {
   )
 }
 
-export default PostItem;
+export default PostItem

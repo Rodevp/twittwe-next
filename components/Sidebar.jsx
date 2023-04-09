@@ -25,14 +25,15 @@ function Sidebar() {
             Icon: BsHouseFill
         },
         {
-            label: "Notifications",
-            path: "/notifications",
-            Icon: BsBellFill
+            icon: BsBellFill,
+            label: 'Notifications',
+            href: '/notifications',
+            alert: data?.hasNotification
         },
         {
-            label: "Profile",
-            path: "/users/123",
-            Icon: FaUser
+            icon: FaUser,
+            label: 'Profile',
+            href: `/users/${data?.id}`,
         }
     ]
 
@@ -49,19 +50,19 @@ function Sidebar() {
                     <IconSidebar />
                     {
                         items.map((item) => {
-                            return <SidebarIconItem  onClick={() => {
-                                
-                                if ( !data?.user && item.path !== "/" ) {
+                            return <SidebarIconItem onClick={() => {
+
+                                if (!data?.user && item.path !== "/") {
                                     modaLogin.onOpen()
                                 } else {
                                     router.push(item.path)
                                 }
-                            } }  key={item.path} {...item} />
+                            }} key={item.path} {...item} />
                         })
                     }
                     {
                         data?.user && (
-                            <SidebarIconItem onClick={ () => signOut() } Icon={BiLogOut} label="logout" />
+                            <SidebarIconItem onClick={() => signOut()} Icon={BiLogOut} label="logout" />
                         )
                     }
                     <TweetButton />

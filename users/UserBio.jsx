@@ -1,30 +1,30 @@
-import { useMemo } from "react";
-import { BiCalendar } from "react-icons/bi";
-import { format } from "date-fns";
+import { useMemo } from "react"
+import { BiCalendar } from "react-icons/bi"
+import { format } from "date-fns"
 
-import useCurrentUser from "@/hooks/useCurrentUser";
-import useUser from "@/hooks/useUser";
-import useFollow from "@/hooks/useFollow";
-import useEditModal from "@/hooks/useEditModal";
+import useCurrentUser from "@/hooks/useCurrentUser"
+import useUser from "@/hooks/useUser"
+import useFollow from "@/hooks/useFollow"
+import useEditModal from "@/hooks/useEditModal"
 
-import Button from "@/components/Button";
+import Button from "@/components/Button"
 
 
 function UserBio ({ userId }) {
     
-  const { data: currentUser } = useCurrentUser();
-  const { data: dataUser } = useUser(userId);
+  const { data: currentUser } = useCurrentUser()
+  const { data: dataUser } = useUser(userId)
 
-  const editModal = useEditModal();
+  const editModal = useEditModal()
 
-  const { isFollowing, toggleFollow } = useFollow(userId);
+  const { isFollowing, toggleFollow } = useFollow(userId)
 
   const createdAt = useMemo(() => {
     if (!dataUser?.createdAt) {
-      return null;
+      return null
     }
 
-    return format(new Date(dataUser.createdAt), 'MMMM yyyy');
+    return format(new Date(dataUser.createdAt), 'MMMM yyyy')
   }, [dataUser?.createdAt])
 
 
@@ -82,7 +82,7 @@ function UserBio ({ userId }) {
         </div>
       </div>
     </div>
-   );
+   )
 }
  
-export default UserBio;
+export default UserBio
