@@ -71,7 +71,7 @@ export default async function handler(req, res) {
         id: postId
       },
       data: {
-        likedIds: updatedLikedIds
+        likedIds: updatedLikedIds,
       }
     })
 

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     if (req.method !== "POST") {
         return res.status(405).json({
             message: 'Method not allowed'
-        })
+        }).end()
     }
 
     const { email, username, name, password } = req.body
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     const hashedPassword = await bcrypt.hash(password, 12)
 
     try {
-        const user = prisma.user.create({
+        const user = await prisma.user.create({
             data: {
                 email,
                 username,
