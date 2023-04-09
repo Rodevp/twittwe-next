@@ -40,7 +40,7 @@ export default async function handler(req, res) {
             comments: true
           },
           orderBy: {
-            createdAt: 'desc'
+            createAt: 'desc'
           },
         });
       } else {
@@ -50,7 +50,7 @@ export default async function handler(req, res) {
             comments: true
           },
           orderBy: {
-            createdAt: 'desc'
+            createAt: 'desc'
           }
         });
       }

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import useUser from "@/hooks/useUser";
 
-import Avatar from "@components/Avatar"
+import Avatar from "@/components/Avatar"
 
 function UserHero ({ userId }) {
   const { data } = useUser(userId);

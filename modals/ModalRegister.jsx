@@ -33,7 +33,7 @@ function ModalRegister() {
             
             toast.success("Register correct")
 
-            signIn("credentials", {
+            await signIn("credentials", {
                 email,
                 password
             })

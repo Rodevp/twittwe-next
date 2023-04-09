@@ -1,5 +1,5 @@
 import Sidebar from "@/components/Sidebar"
-import FollowBar from "./FollowBar"
+import FollowBar from "@/components/FollowBar"
 
 function Layout({ children }) {
     return (

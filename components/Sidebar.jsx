@@ -3,8 +3,8 @@ import { FaUser } from "react-icons/fa"
 import { BiLogOut } from "react-icons/bi"
 
 import IconSidebar from "@/components/IconSidebar"
-import SidebarIconItem from "./SidebarIconItem"
-import TweetButton from "./TweetButton"
+import SidebarIconItem from "@/components/SidebarIconItem"
+import TweetButton from "@/components/TweetButton"
 import useCurrentUser from "@/hooks/useCurrentUser"
 
 import { signOut } from "next-auth/react"
@@ -25,13 +25,13 @@ function Sidebar() {
             Icon: BsHouseFill
         },
         {
-            icon: BsBellFill,
+            Icon: BsBellFill,
             label: 'Notifications',
             href: '/notifications',
             alert: data?.hasNotification
         },
         {
-            icon: FaUser,
+            Icon: FaUser,
             label: 'Profile',
             href: `/users/${data?.id}`,
         }
@@ -49,7 +49,7 @@ function Sidebar() {
                 >
                     <IconSidebar />
                     {
-                        items.map((item) => {
+                        items.map((item, i) => {
                             return <SidebarIconItem onClick={() => {
 
                                 if (!data?.user && item.path !== "/") {
@@ -57,7 +57,7 @@ function Sidebar() {
                                 } else {
                                     router.push(item.path)
                                 }
-                            }} key={item.path} {...item} />
+                            }} key={i} {...item} />
                         })
                     }
                     {

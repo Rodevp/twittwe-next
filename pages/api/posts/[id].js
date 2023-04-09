@@ -25,7 +25,7 @@ export default async function handler(req, res) {
             user: true
           },
           orderBy: {
-            createdAt: 'desc'
+            createAt: 'desc'
           }
         },
       },
