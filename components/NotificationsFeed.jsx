@@ -5,6 +5,7 @@ import useCurrentUser from "@/hooks/useCurrentUser"
 import { useEffect } from "react"
 
 const NotificationsFeed = () => {
+    
     const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser()
     const { data: fetchedNotifications = [] } = useNotifications(currentUser?.id)
 

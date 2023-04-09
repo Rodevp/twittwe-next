@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import useUser from "@/hooks/useUser"
+import UserBio from "@/users/UserBio"
 import UserHero from "@/users/UserHero"
 import { useRouter } from "next/router"
 import { ClipLoader } from "react-spinners"
@@ -28,6 +29,7 @@ function User() {
     <>
         <Header label={data?.username} showBackArrow />
         <UserHero userId={id} />
+        <UserBio  userId={id} />
     </>
   )
 }

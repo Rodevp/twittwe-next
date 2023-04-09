@@ -27,13 +27,13 @@ function Sidebar() {
         {
             Icon: BsBellFill,
             label: 'Notifications',
-            href: '/notifications',
-            alert: data?.hasNotification
+            path: '/notifications',
+            alert: data?.user?.hasNotification
         },
         {
             Icon: FaUser,
             label: 'Profile',
-            href: `/users/${data?.id}`,
+            path: `/users/${data?.user?.id}`,
         }
     ]
 

@@ -3,7 +3,7 @@ import { useCallback, useMemo } from "react"
 import { toast } from "react-hot-toast"
 
 import useCurrentUser from "@/hooks/useCurrentUser"
-import useLoginModal from "@/hooks/useLoginModal"
+import { useModalLogin } from "@/hooks/useModalLogin"
 import useUser from "@/hooks/useUser"
 
 const useFollow = (userId) => {
@@ -11,7 +11,7 @@ const useFollow = (userId) => {
     const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser()
     const { mutate: mutateFetchedUser } = useUser(userId)
 
-    const loginModal = useLoginModal()
+    const loginModal = useModalLogin()
 
     const isFollowing = useMemo(() => {
 

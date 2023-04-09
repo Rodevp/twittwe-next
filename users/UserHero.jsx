@@ -5,6 +5,7 @@ import useUser from "@/hooks/useUser";
 import Avatar from "@/components/Avatar"
 
 function UserHero ({ userId }) {
+  
   const { data } = useUser(userId);
 
   return ( 

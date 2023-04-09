@@ -1,4 +1,5 @@
-import serverAuth from '@/libs/server';
+import serverAuth from '@/libs/server'
+import prisma from  "@/libs/prisma"
 
 export default async function handler(req, res) {
     if (req.method !== 'PATCH') {
