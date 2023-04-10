@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import useUser from "@/hooks/useUser"
+import PostFeed from "@/post/PostFeed"
 import UserBio from "@/users/UserBio"
 import UserHero from "@/users/UserHero"
 import { useRouter } from "next/router"
@@ -30,6 +31,7 @@ function User() {
         <Header label={data?.username} showBackArrow />
         <UserHero userId={id} />
         <UserBio  userId={id} />
+        <PostFeed userId={id} />
     </>
   )
 }

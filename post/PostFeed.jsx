@@ -3,11 +3,15 @@ import usePosts from '@/hooks/usePosts';
 import PostItem from '@/post/PostItem';
 
 
-function PostFeed () {
+function PostFeed ({ userId }) {
+
+  console.log('user id -> ', userId)
 
   const { data: currentUser } = useCurrentUser()
 
-  const { data } = usePosts(currentUser?.user.id);
+  const idSearchPost = userId !== undefined ? userId : currentUser?.user.id
+
+  const { data } = usePosts(idSearchPost)
 
   return (
     <>
