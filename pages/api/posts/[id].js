@@ -10,6 +10,8 @@ export default async function handler(req, res) {
   try {
     const { id } = req.query;
 
+    console.log('query backend -> ', id)
+
     if (!id || typeof id !== 'string') {
       throw new Error('Invalid ID');
     }
@@ -25,7 +27,7 @@ export default async function handler(req, res) {
             user: true
           },
           orderBy: {
-            createAt: 'desc'
+            createdAt: 'desc'
           }
         },
       },

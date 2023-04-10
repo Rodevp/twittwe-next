@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react'
 import { AiFillHeart, AiOutlineHeart, AiOutlineMessage } from 'react-icons/ai'
 import { formatDistanceToNowStrict } from 'date-fns'
 
-import useLoginModal from '@/hooks/useLoginModal'
+import { useModalLogin } from '@/hooks/useModalLogin'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useLike from '@/hooks/useLike'
 
@@ -13,7 +13,7 @@ import Avatar from '@/components/Avatar'
 function PostItem ({ data = {}, userId }) {
 
   const router = useRouter()
-  const loginModal = useLoginModal()
+  const loginModal = useModalLogin()
 
   const { data: currentUser } = useCurrentUser()
   const { hasLiked, toggleLike } = useLike({ postId: data.id, userId})
@@ -70,13 +70,14 @@ function PostItem ({ data = {}, userId }) {
                 font-semibold 
                 cursor-pointer 
                 hover:underline
+                px-4
             ">
               {data.user.name}
             </p>
             <span 
               onClick={goToUser} 
               className="
-                text-neutral-500
+                text-white
                 cursor-pointer
                 hover:underline
                 hidden
@@ -84,25 +85,26 @@ function PostItem ({ data = {}, userId }) {
             ">
               @{data.user.username}
             </span>
-            <span className="text-neutral-500 text-sm">
+            <span className="text-white text-sm px-1">
               {createdAt}
             </span>
           </div>
-          <div className="text-white mt-1">
+          <div className="text-white mt-1 px-4">
             {data.body}
           </div>
-          <div className="flex flex-row items-center mt-3 gap-10">
+          <div className="flex flex-row self-start px-4 mt-3 gap-10">
             <div 
               className="
                 flex 
                 flex-row 
                 items-center 
-                text-neutral-500 
+                text-white 
                 gap-2 
                 cursor-pointer 
                 transition 
                 hover:text-sky-500
-            ">
+              "
+            >
               <AiOutlineMessage size={20} />
               <p>
                 {data.comments?.length || 0}
@@ -113,16 +115,17 @@ function PostItem ({ data = {}, userId }) {
               className="
                 flex 
                 flex-row 
-                items-center 
-                text-neutral-500 
                 gap-2 
                 cursor-pointer 
                 transition 
                 hover:text-red-500
-            ">
-              <LikeIcon color={hasLiked ? 'red' : ''} size={20} />
-              <p>
-                {data.likedIds.length}
+              "
+            >
+              <LikeIcon color={hasLiked ? 'red' : 'white'} size={20} />
+              <p
+                className='text-white'
+              >
+                {data?.likedIds.length}
               </p>
             </div>
           </div>

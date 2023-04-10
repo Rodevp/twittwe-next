@@ -2,8 +2,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
-import useLoginModal from '@/hooks/useLoginModal'
-import useRegisterModal from '@/hooks/useRegisterModal'
+import { useModalLogin } from '@/hooks/useModalLogin'
+import { useModalRegister } from '@/hooks/useModalRegister'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import usePosts from '@/hooks/usePosts'
 import usePost from '@/hooks/usePost'
@@ -14,8 +14,8 @@ import Button from '@/components/Button'
 
 function Form({ placeholder, isComment, postId }) {
 
-    const registerModal = useRegisterModal()
-    const loginModal = useLoginModal()
+    const registerModal = useModalRegister()
+    const loginModal = useModalLogin()
 
     const { data: currentUser } = useCurrentUser()
     const { mutate: mutatePosts } = usePosts()

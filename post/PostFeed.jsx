@@ -1,16 +1,27 @@
+import useCurrentUser from '@/hooks/useCurrentUser';
 import usePosts from '@/hooks/usePosts';
-
 import PostItem from '@/post/PostItem';
 
 
-function PostFeed ({ userId }) {
-  const { data: posts = [] } = usePosts(userId);
+function PostFeed () {
+
+  const { data: currentUser } = useCurrentUser()
+
+  const { data } = usePosts(currentUser?.user.id);
+
+  console.log('post -> ', data)
 
   return (
     <>
-      {posts.map((post) => (
-        <PostItem userId={userId} key={post.id} data={post} />
-      ))}
+      {
+        data?.map((postData) => {
+
+          return (
+            <PostItem data={postData} userId={postData?.userId} key={postData?.id}  />
+          )
+
+        })
+      }
     </>
   );
 };

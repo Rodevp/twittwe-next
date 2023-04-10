@@ -5,7 +5,7 @@ import usePost from "@/hooks/usePost"
 
 import Header from "@/components/Header"
 import Form from "@/components/Form"
-import PostItem from "@/posts/PostItem"
+import PostItem from "@/post/PostItem"
 import CommentFeed from "@/comments/CommentFeed"
 
 function PostView () {

@@ -24,23 +24,24 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'GET') {
-      const { userId } = req.query;
+      const { id } = req.query;
 
-      console.log({ userId })
+      console.log({ id })
 
       let posts;
 
-      if (userId && typeof userId === 'string') {
+      if (id && typeof id === 'string') {
+
         posts = await prisma.post.findMany({
           where: {
-            userId
+            userId: id
           },
           include: {
             user: true,
             comments: true
           },
           orderBy: {
-            createAt: 'desc'
+            createdAt: 'desc'
           },
         });
       } else {
@@ -50,7 +51,7 @@ export default async function handler(req, res) {
             comments: true
           },
           orderBy: {
-            createAt: 'desc'
+            createdAt: 'desc'
           }
         });
       }

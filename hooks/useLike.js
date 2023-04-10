@@ -2,10 +2,10 @@ import axios from "axios"
 import { useCallback, useMemo } from "react"
 import { toast } from "react-hot-toast"
 
-import useCurrentUser from "./useCurrentUser"
-import useLoginModal from "./useLoginModal"
-import usePost from "./usePost"
-import usePosts from "./usePosts"
+import useCurrentUser from "@/hooks/useCurrentUser"
+import { useModalLogin } from "@/hooks/useModalLogin"
+import usePost from "@/hooks/usePost"
+import usePosts from "@/hooks/usePosts"
 
 const useLike = ( { postId, userId} ) => {
 
@@ -13,7 +13,7 @@ const useLike = ( { postId, userId} ) => {
   const { data: fetchedPost, mutate: mutateFetchedPost } = usePost(postId)
   const { mutate: mutateFetchedPosts } = usePosts(userId)
 
-  const loginModal = useLoginModal()
+  const loginModal = useModalLogin()
 
   const hasLiked = useMemo(() => {
     const list = fetchedPost?.likedIds || []
