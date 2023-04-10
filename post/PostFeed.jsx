@@ -9,8 +9,6 @@ function PostFeed () {
 
   const { data } = usePosts(currentUser?.user.id);
 
-  console.log('post -> ', data)
-
   return (
     <>
       {

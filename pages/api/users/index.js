@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     try {
         const users = await prisma.user.findMany({
             orderBy: {
-                createdAt: 'desc'
+                createAt: 'desc'
             }
         });
 
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     }
     catch (error) {
 
-        console.log(error);
+        console.log(error.message);
         return res.status(400).end();
 
     }

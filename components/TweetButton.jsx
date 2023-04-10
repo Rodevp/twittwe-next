@@ -6,11 +6,10 @@ import { useModalLogin } from "@/hooks/useModalLogin"
 import useCurrentUser from "@/hooks/useCurrentUser"
 
 const SidebarTweetButton = () => {
+    
     const router = useRouter()
     const loginModal = useModalLogin()
     const { data: currentUser } = useCurrentUser()
-
-    console.log('tweet button -> ', currentUser)
 
     const onClick = useCallback(() => {
         

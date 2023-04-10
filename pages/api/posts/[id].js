@@ -10,10 +10,12 @@ export default async function handler(req, res) {
   try {
     const { id } = req.query;
 
-    console.log('query backend -> ', id)
-
     if (!id || typeof id !== 'string') {
       throw new Error('Invalid ID');
+    }
+
+    if (!id) {
+      return res.status(400).end()
     }
 
     const post = await prisma.post.findUnique({
