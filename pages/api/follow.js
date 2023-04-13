@@ -28,7 +28,7 @@ export default async function handler(req, res) {
       throw new Error('Invalid ID')
     }
 
-    let updatedFollowingIds = [...(user.followingsId|| [])]
+    let updatedFollowingIds = [...( user.followingsId || [] ) ]
 
     if (req.method === 'POST') {
       updatedFollowingIds.push(userId)

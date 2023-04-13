@@ -1,4 +1,4 @@
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { BiCalendar } from "react-icons/bi"
 import { format } from "date-fns"
 
@@ -14,10 +14,9 @@ function UserBio ({ userId }) {
     
   const { data: currentUser } = useCurrentUser()
   const { data: dataUser } = useUser(userId)
-
   const editModal = useEditModal()
-
   const { isFollowing, toggleFollow } = useFollow(userId)
+  
 
   console.log('follow -> ', isFollowing(), 'id user -> ', userId)
 
@@ -29,17 +28,16 @@ function UserBio ({ userId }) {
     return format(new Date(dataUser.createAt), 'MMMM yyyy')
   }, [dataUser?.createAt])
 
-
   return ( 
     <div className="border-b-[1px] border-neutral-800 pb-4">
       <div className="flex justify-end p-2">
         {userId === currentUser?.user?.id ? (
-          <Button secondary label="Edit" onClick={editModal.onOpen} />
+          <Button secondary={true} outline={true} label="Edit" onClick={editModal.onOpen} />
         ) : (
           <Button
             onClick={toggleFollow} 
             label={isFollowing() ? 'Unfollow' : 'Follow'}
-            secondary={!isFollowing()}
+            secondary={isFollowing()}
             outline={isFollowing()}
           />
         )}
