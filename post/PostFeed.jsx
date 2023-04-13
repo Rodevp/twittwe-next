@@ -5,8 +5,6 @@ import PostItem from '@/post/PostItem';
 
 function PostFeed ({ userId }) {
 
-  console.log('user id -> ', userId)
-
   const { data: currentUser } = useCurrentUser()
 
   const idSearchPost = userId !== undefined ? userId : currentUser?.user.id
@@ -16,7 +14,8 @@ function PostFeed ({ userId }) {
   return (
     <>
       {
-        data?.map((postData) => {
+        data?.length === 0 ? <p>Loading...</p>
+        : data?.map((postData) => {
 
           return (
             <PostItem data={postData} userId={postData?.userId} key={postData?.id}  />

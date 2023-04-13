@@ -114,11 +114,11 @@ function PostItem ({ data = {}, userId }) {
               onClick={onLike}
               className="
                 flex 
-                flex-row 
+                flex-row
+                items-center 
                 gap-2 
                 cursor-pointer 
                 transition 
-                hover:text-red-500
               "
             >
               <LikeIcon color={hasLiked ? 'red' : 'white'} size={20} />

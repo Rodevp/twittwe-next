@@ -26,8 +26,6 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
       const { id } = req.query;
 
-      console.log({ id })
-
       let posts;
 
       if (id && typeof id === 'string') {

@@ -7,7 +7,8 @@ import { useEffect } from "react"
 const NotificationsFeed = () => {
     
     const { data: currentUser, mutate: mutateCurrentUser } = useCurrentUser()
-    const { data: fetchedNotifications = [] } = useNotifications(currentUser?.id)
+
+    const { data: fetchedNotifications = [] } = useNotifications(currentUser?.user.id)
 
     useEffect(() => {
         mutateCurrentUser()
@@ -16,7 +17,7 @@ const NotificationsFeed = () => {
     if (fetchedNotifications.length === 0) {
         return (
             <div className="text-neutral-600 text-center p-6 text-xl">
-                No notifications
+                Loading...
             </div>
         )
     }

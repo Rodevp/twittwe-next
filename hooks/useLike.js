@@ -18,10 +18,10 @@ const useLike = ( { postId, userId} ) => {
   const hasLiked = useMemo(() => {
     const list = fetchedPost?.likedIds || []
 
-    return list.includes(currentUser?.id)
+    return list.includes(currentUser?.user.id)
   }, [fetchedPost, currentUser])
 
-  const toggleLike = useCallback(async () => {
+  const toggleLike = async () => {
     if (!currentUser) {
       return loginModal.onOpen()
     }
@@ -30,7 +30,7 @@ const useLike = ( { postId, userId} ) => {
       let request
 
       if (hasLiked) {
-        request = () => axios.delete('/api/like', { data: { postId } })
+        request = () => axios.delete('/api/like', { params: { id: postId } })
       } else {
         request = () => axios.post('/api/like', { postId })
       }
@@ -43,7 +43,7 @@ const useLike = ( { postId, userId} ) => {
     } catch (error) {
       toast.error('Something went wrong')
     }
-  }, [currentUser, hasLiked, postId, mutateFetchedPosts, mutateFetchedPost, loginModal])
+  }
 
   return {
     hasLiked,

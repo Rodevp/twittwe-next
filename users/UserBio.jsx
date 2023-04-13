@@ -19,6 +19,8 @@ function UserBio ({ userId }) {
 
   const { isFollowing, toggleFollow } = useFollow(userId)
 
+  console.log('follow -> ', isFollowing(), 'id user -> ', userId)
+
   const createdAt = useMemo(() => {
     if (!dataUser?.createAt) {
       return null
@@ -36,9 +38,9 @@ function UserBio ({ userId }) {
         ) : (
           <Button
             onClick={toggleFollow} 
-            label={isFollowing ? 'Unfollow' : 'Follow'}
-            secondary={!isFollowing}
-            outline={isFollowing}
+            label={isFollowing() ? 'Unfollow' : 'Follow'}
+            secondary={!isFollowing()}
+            outline={isFollowing()}
           />
         )}
       </div>

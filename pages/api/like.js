@@ -8,17 +8,20 @@ export default async function handler(req, res) {
   }
 
   try {
+
     const { postId } = req.body
+
+    const idCurrent = postId === undefined ? req.query?.id : postId
 
     const { currentUser } = await serverAuth(req, res)
 
-    if (!postId || typeof postId !== 'string') {
+    if (!idCurrent || typeof idCurrent !== 'string') {
       throw new Error('Invalid ID')
     }
 
     const post = await prisma.post.findUnique({
       where: {
-        id: postId
+        id: idCurrent
       }
     })
 
@@ -30,7 +33,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
       updatedLikedIds.push(currentUser.id)
-      
+
       // NOTIFICATION PART START
       try {
         const post = await prisma.post.findUnique({
@@ -38,7 +41,7 @@ export default async function handler(req, res) {
             id: postId,
           }
         })
-    
+
         if (post?.userId) {
           await prisma.notification.create({
             data: {
@@ -46,7 +49,7 @@ export default async function handler(req, res) {
               userId: post.userId
             }
           })
-    
+
           await prisma.user.update({
             where: {
               id: post.userId
@@ -56,7 +59,7 @@ export default async function handler(req, res) {
             }
           })
         }
-      } catch(error) {
+      } catch (error) {
         console.log(error)
       }
       // NOTIFICATION PART END

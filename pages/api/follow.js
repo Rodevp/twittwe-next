@@ -10,15 +10,17 @@ export default async function handler(req, res) {
   try {
     const { userId } = req.body
 
+    const currenId = userId === undefined ? req.query.id : userId
+
     const { currentUser } = await serverAuth(req, res)
 
-    if (!userId || typeof userId !== 'string') {
+    if (!currenId || typeof currenId !== 'string') {
       throw new Error('Invalid ID')
     }
 
     const user = await prisma.user.findUnique({
       where: {
-        id: userId
+        id: currenId
       }
     })
 
