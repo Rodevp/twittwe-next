@@ -33,7 +33,7 @@ function CommentItem ({ data = {} }) {
         hover:bg-neutral-900 
         transition
       ">
-      <div className="flex flex-row items-start gap-3">
+      <div className="flex flex-row items-start gap-4">
         <Avatar userId={data?.user.id} />
         <div>
           <div className="flex flex-row items-center gap-2">
@@ -58,7 +58,7 @@ function CommentItem ({ data = {} }) {
             ">
               @{data?.user.username}
             </span>
-            <span className="text-neutral-500 text-sm">
+            <span className="text-white text-sm">
               {createdAt}
             </span>
           </div>
