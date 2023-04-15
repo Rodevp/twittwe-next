@@ -15,6 +15,8 @@ export default async function handler(req, res) {
 
     const { currentUser } = await serverAuth(req, res)
 
+    console.log('id post -> ', idCurrent)
+
     if (!idCurrent || typeof idCurrent !== 'string') {
       throw new Error('Invalid ID')
     }
@@ -66,12 +68,12 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'DELETE') {
-      updatedLikedIds = updatedLikedIds.filter((likedId) => likedId !== currentUser?.id)
+      updatedLikedIds = updatedLikedIds.filter((likedId) => likedId !== currentUser.id)
     }
 
     const updatedPost = await prisma.post.update({
       where: {
-        id: postId
+        id: idCurrent
       },
       data: {
         likedIds: updatedLikedIds,
@@ -80,7 +82,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json(updatedPost)
   } catch (error) {
-    console.log(error)
+    console.log(error.message)
     return res.status(400).end()
   }
 }
