@@ -16,9 +16,6 @@ function UserBio ({ userId }) {
   const { data: dataUser } = useUser(userId)
   const editModal = useEditModal()
   const { isFollowing, toggleFollow } = useFollow(userId)
-  
-
-  console.log('follow -> ', isFollowing(), 'id user -> ', userId)
 
   const createdAt = useMemo(() => {
     if (!dataUser?.createAt) {

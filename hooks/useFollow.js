@@ -11,10 +11,10 @@ const useFollow = (userId) => {
     const { mutate: mutateFetchedUser } = useUser(userId)
 
     const loginModal = useModalLogin()
-
+    
     const isFollowing = () => {
 
-        const list = currentUser?.user.followingIds || []
+        const list = currentUser?.user.followingsId || []
 
         return list.includes(userId)
     }
@@ -28,7 +28,7 @@ const useFollow = (userId) => {
         try {
             let request
 
-            if (isFollowing) {
+            if ( isFollowing() ) {
                 request = () => axios.delete('/api/follow', { params: { id: userId } })
             } else {
                 request = () => axios.post('/api/follow', { userId })

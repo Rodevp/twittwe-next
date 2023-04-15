@@ -24,6 +24,8 @@ export default async function handler(req, res) {
       }
     })
 
+    console.log('usuario actual -> ', user?.name)
+
     if (!user) {
       throw new Error('Invalid ID')
     }
@@ -31,7 +33,9 @@ export default async function handler(req, res) {
     let updatedFollowingIds = [...( user.followingsId || [] ) ]
 
     if (req.method === 'POST') {
+
       updatedFollowingIds.push(userId)
+      console.log('followers post -> ', updatedFollowingIds)
 
       // NOTIFICATION PART START
       try {
@@ -59,6 +63,7 @@ export default async function handler(req, res) {
 
     if (req.method === 'DELETE') {
       updatedFollowingIds = updatedFollowingIds.filter((followingId) => followingId !== currentUser?.id)
+      console.log('followers delete -> ', updatedFollowingIds)
     }
 
     const updatedUser = await prisma.user.update({

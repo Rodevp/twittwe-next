@@ -19,7 +19,12 @@ export default async function handler(req, res) {
                 email,
                 username,
                 name,
-                hashedPassword
+                hashedPassword,
+                followingsId: [],
+                bio: "",
+                coverImage: "",
+                profileImage: "",
+                hasNotification: false
             }
         })
 
