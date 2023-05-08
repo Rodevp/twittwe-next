@@ -15,8 +15,6 @@ export default async function handler(req, res) {
 
     const { currentUser } = await serverAuth(req, res)
 
-    console.log('id post -> ', idCurrent)
-
     if (!idCurrent || typeof idCurrent !== 'string') {
       throw new Error('Invalid ID')
     }

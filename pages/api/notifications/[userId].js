@@ -16,9 +16,6 @@ export default async function handler(req, res) {
       const notifications = await prisma.notification.findMany({
         where: {
           userId,
-        },
-        orderBy: {
-          createdAt: 'desc'
         }
       })
   
