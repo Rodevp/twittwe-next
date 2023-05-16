@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
       if (id && typeof id === 'string') {
 
-        posts = await prisma.post.findMany({
+        posts = await prisma?.post.findMany({
           where: {
             userId: id
           },
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
           }
         });
       } else {
-        posts = await prisma.post.findMany({
+        posts = await prisma?.post.findMany({
           include: {
             user: true,
             comments: true
